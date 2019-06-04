@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cto.explosive.dao.UserMapper" >
+    <resultMap id="UserResultMap" type="com.cto.explosive.entity.User" >
+        <result property="id" column="id" />
+        <result property="uuid" column="uuid" />
+        <result property="userName" column="user_name" />
+        <result property="nickName" column="nick_name" />
+        <result property="password" column="password" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <sql id="User_Column_List" >
+        id,
+        uuid,
+        user_name,
+        nick_name,
+        password,
+        create_time,
+        update_time
+    </sql>
+
+    <insert id="insert" parameterType="com.cto.explosive.entity.User">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO user (
+        <include refid="User_Column_List" />
+        ) VALUES (
+        #{id},
+        #{uuid},
+        #{userName},
+        #{nickName},
+        #{password},
+        #{createTime},
+        #{updateTime}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.cto.explosive.entity.User">
+        UPDATE user SET
+        uuid = #{uuid},
+        user_name = #{userName},
+        nick_name = #{nickName},
+        password = #{password},
+        create_time = #{createTime},
+        update_time = #{updateTime}
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateBySelective" parameterType="com.cto.explosive.entity.User">
+        UPDATE user
+        <set>
+        <if test="userName!=null and userName!=''">
+        user_name=#{userName},
+        </if>
+        <if test="nickName!=null and nickName!=''">
+        nick_name=#{nickName},
+        </if>
+        <if test="password!=null and password!=''">
+        password=#{password},
+        </if>
+        <if test="createTime!=null">
+        create_time=#{createTime},
+        </if>
+        <if test="updateTime!=null">
+        update_time=#{updateTime}
+        </if>
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+
+    <select id="selectEntityById" parameterType="java.lang.Long" resultMap="UserResultMap">
+        select <include refid="User_Column_List" /> from user where id=#{id}
+    </select>
+
+    <select id="selectListBySearch" parameterType="com.cto.explosive.entity.vo.UserVo" resultMap="UserResultMap">
+        select <include refid="User_Column_List" /> from user where 1=1
+        <if test="id!=null">
+        and id=#{id}
+        </if>
+        <if test="uuid!=null and uuid != ''">
+            and uuid=#{uuid}
+        </if>
+        <if test="userName!=null and userName!=''">
+        and user_name like CONCAT('%',#{userName},'%')
+        </if>
+        <if test="nickName!=null and nickName!=''">
+        and nick_name like CONCAT('%',#{nickName},'%')
+        </if>
+        <if test="password!=null and password!=''">
+        and password like CONCAT('%',#{password},'%')
+        </if>
+        <if test="createTime!=null">
+        and create_time=#{createTime}
+        </if>
+        <if test="updateTime!=null">
+        and update_time=#{updateTime}
+        </if>
+        <if test="sortStr != null and sortStr != ''">
+            order by  ${sortStr}
+        </if>
+    </select>
+
+    <select id="selectPageList" parameterType="com.cto.explosive.entity.vo.UserVo" resultMap="UserResultMap">
+        select <include refid="User_Column_List" /> from user where 1=1
+        <if test="id!=null">
+        and id=#{id}
+        </if>
+        <if test="uuid!=null and uuid != ''">
+            and uuid=#{uuid}
+        </if>
+        <if test="userName!=null and userName!=''">
+        and user_name like CONCAT('%',#{userName},'%')
+        </if>
+        <if test="nickName!=null and nickName!=''">
+        and nick_name like CONCAT('%',#{nickName},'%')
+        </if>
+        <if test="password!=null and password!=''">
+        and password like CONCAT('%',#{password},'%')
+        </if>
+        <if test="createTime!=null">
+        and create_time=#{createTime}
+        </if>
+        <if test="updateTime!=null">
+        and update_time=#{updateTime}
+        </if>
+        <if test="sortStr != null and sortStr != ''">
+            order by  ${sortStr}
+        </if>
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="selectPageCount" parameterType="com.cto.explosive.entity.vo.UserVo" resultType="java.lang.Integer">
+        select count(1) from user where 1=1
+        <if test="id!=null">
+        and id=#{id}
+        </if>
+        <if test="uuid!=null and uuid != ''">
+            and uuid=#{uuid}
+        </if>
+        <if test="userName!=null and userName!=''">
+        and user_name like CONCAT('%',#{userName},'%')
+        </if>
+        <if test="nickName!=null and nickName!=''">
+        and nick_name like CONCAT('%',#{nickName},'%')
+        </if>
+        <if test="password!=null and password!=''">
+        and password like CONCAT('%',#{password},'%')
+        </if>
+        <if test="createTime!=null">
+        and create_time=#{createTime}
+        </if>
+        <if test="updateTime!=null">
+        and update_time=#{updateTime}
+        </if>
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM
+        user
+        where id=#{id}
+    </delete>
+</mapper>
