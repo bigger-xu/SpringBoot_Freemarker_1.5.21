@@ -1,6 +1,6 @@
 package com.cto.explosive.utils;
 
-import com.cto.explosive.entity.User;
+import com.cto.explosive.entity.AdminUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,7 +50,7 @@ public class SessionUtil {
      * @param request
      * @param user
      */
-    public static void setUser(HttpServletRequest request, User user){
+    public static void setUser(HttpServletRequest request, AdminUser user){
         request.getSession(true).setAttribute(SESSION_USER, user);
     }
     
@@ -59,8 +59,8 @@ public class SessionUtil {
      * @param request
      * @return SysUser
      */
-    public static User getUser(HttpServletRequest request){
-       return (User)request.getSession().getAttribute(SESSION_USER);
+    public static AdminUser getUser(HttpServletRequest request){
+       return (AdminUser)request.getSession().getAttribute(SESSION_USER);
     }
     
     /**
@@ -69,7 +69,7 @@ public class SessionUtil {
      * @return SysUser
      */
     public static Long getUserId(HttpServletRequest request){
-        User user = getUser(request);
+        AdminUser user = getUser(request);
         if(user != null){
             return user.getId();
         }

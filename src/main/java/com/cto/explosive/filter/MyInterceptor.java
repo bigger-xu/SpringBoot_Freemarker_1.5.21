@@ -1,5 +1,7 @@
 package com.cto.explosive.filter;
 
+import com.cto.explosive.entity.AdminUser;
+import com.cto.explosive.utils.SessionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -29,7 +31,8 @@ public class MyInterceptor implements HandlerInterceptor {
         LOGGER.info("====================验证用户是否登录开始=====================");
         boolean flag;
         //如果获取不到用户，跳转到登陆页面
-//        User user = SessionUtil.getUser(httpServletRequest);
+        AdminUser user = SessionUtil.getUser(httpServletRequest);
+        //if (user == null) {
         if (false) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/");
             flag = false;

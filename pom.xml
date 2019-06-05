@@ -60,6 +60,17 @@
             <version>1.2.16</version>
             <scope>compile</scope>
         </dependency>
+        <!--shiro权限-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring-boot-web-starter</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
     </dependencies>
     <profiles>
         <profile>
@@ -68,9 +79,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <jdbc.url><![CDATA[jdbc:mysql://39.106.26.128:3306/explosive?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false]]></jdbc.url>
+                <jdbc.url><![CDATA[jdbc:mysql://localhost:3306/base_freemarker?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false]]></jdbc.url>
                 <jdbc.username>root</jdbc.username>
-                <jdbc.password>ZYW15210533913qq</jdbc.password>
+                <jdbc.password>root1234</jdbc.password>
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
             </properties>
         </profile>
