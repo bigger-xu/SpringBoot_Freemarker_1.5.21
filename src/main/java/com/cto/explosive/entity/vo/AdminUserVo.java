@@ -6,6 +6,9 @@
 package com.cto.explosive.entity.vo;
 
 import com.cto.explosive.entity.AdminUser;
+import com.cto.explosive.utils.TreeNode;
+
+import java.util.List;
 
 /**
  * 文件名 AdminUserVo.java
@@ -22,5 +25,15 @@ public class AdminUserVo extends AdminUser {
      */
     public AdminUserVo() {
 
+    }
+
+    private List<TreeNode> treeNodeList;
+
+    public List<TreeNode> getTreeNodeList() {
+        return treeNodeList;
+    }
+
+    public void setTreeNodeList(List<TreeNode> treeNodeList) {
+        this.treeNodeList = treeNodeList;
     }
 }

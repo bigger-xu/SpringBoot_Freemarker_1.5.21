@@ -6,6 +6,7 @@
 package com.cto.explosive.service;
 
 import com.cto.explosive.entity.AdminUser;
+import com.cto.explosive.entity.vo.AdminUserVo;
 import com.cto.explosive.service.base.BaseService;
 import com.cto.explosive.utils.Page;
 
@@ -28,5 +29,5 @@ public interface AdminUserService extends BaseService<AdminUser> {
      * @param userName
      * @return
      */
-    AdminUser getByUserName(String userName);
+    AdminUserVo getByUserName(String userName);
 }

@@ -7,6 +7,7 @@ package com.cto.explosive.dao;
 
 import com.cto.explosive.dao.base.BaseDao;
 import com.cto.explosive.entity.AdminUser;
+import com.cto.explosive.entity.vo.AdminUserVo;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -23,5 +24,5 @@ public interface AdminUserMapper extends BaseDao<AdminUser> {
      * @param userName
      * @return
      */
-    AdminUser getByUserName(String userName);
+    AdminUserVo getByUserName(String userName);
 }

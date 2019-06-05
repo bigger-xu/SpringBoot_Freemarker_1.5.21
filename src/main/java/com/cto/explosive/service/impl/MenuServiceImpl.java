@@ -43,4 +43,14 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
     public List<Menu> getMenuListByUserId(Long id) {
         return menuMapper.getMenuListByUserId(id);
     }
+
+    @Override
+    public List<Menu> getParentMenuListByUserId(Long id) {
+        return menuMapper.getParentMenuListByUserId(id);
+    }
+
+    @Override
+    public List<Menu> getChildMenuListByUserId(Long id) {
+        return menuMapper.getChildMenuListByUserId(id);
+    }
 }

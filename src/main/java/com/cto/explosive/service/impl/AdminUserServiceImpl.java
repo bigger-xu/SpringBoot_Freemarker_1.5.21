@@ -7,6 +7,7 @@ package com.cto.explosive.service.impl;
 
 import com.cto.explosive.dao.AdminUserMapper;
 import com.cto.explosive.entity.AdminUser;
+import com.cto.explosive.entity.vo.AdminUserVo;
 import com.cto.explosive.service.AdminUserService;
 import com.cto.explosive.service.base.BaseServiceImpl;
 import com.cto.explosive.utils.Page;
@@ -40,7 +41,7 @@ public class AdminUserServiceImpl extends BaseServiceImpl<AdminUser> implements 
     }
 
     @Override
-    public AdminUser getByUserName(String userName) {
+    public AdminUserVo getByUserName(String userName) {
         return adminUserMapper.getByUserName(userName);
     }
 }

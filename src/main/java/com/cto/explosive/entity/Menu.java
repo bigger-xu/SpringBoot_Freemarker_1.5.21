@@ -56,7 +56,7 @@ public class Menu extends BaseEntity {
 	/**
 	 * 属性ParentId(父id 关联sys_menu.id)
 	 */
-	private Integer parentId;
+	private Long parentId;
 	/**
 	 * 属性Id(主键)
 	 */
@@ -217,7 +217,7 @@ public class Menu extends BaseEntity {
 	 * @author 1
 	 * @date 2019-06-05 14:44:13
 	*/
-	public Integer getParentId(){
+	public Long getParentId(){
 		return parentId;
 	}
 	/**
@@ -227,7 +227,7 @@ public class Menu extends BaseEntity {
 	* @author 1
 	* @date  2019-06-05 14:44:13
 	*/
-	public void setParentId(Integer parentId ){
+	public void setParentId(Long parentId ){
 		this.parentId = parentId ;
 	}
 	/**

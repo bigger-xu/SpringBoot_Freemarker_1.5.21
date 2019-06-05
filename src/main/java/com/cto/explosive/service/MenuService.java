@@ -31,4 +31,18 @@ public interface MenuService extends BaseService<Menu> {
      * @return
      */
     List<Menu> getMenuListByUserId(Long id);
+
+    /**
+     * 根据用户ID获取父节点菜单
+     * @param id
+     * @return
+     */
+    List<Menu> getParentMenuListByUserId(Long id);
+
+    /**
+     * 根据用户ID获取子节点菜单
+     * @param id
+     * @return
+     */
+    List<Menu> getChildMenuListByUserId(Long id);
 }

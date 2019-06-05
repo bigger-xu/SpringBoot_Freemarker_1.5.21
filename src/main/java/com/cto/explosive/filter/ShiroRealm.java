@@ -3,10 +3,14 @@ package com.cto.explosive.filter;
 import com.cto.explosive.entity.AdminUser;
 import com.cto.explosive.entity.Menu;
 import com.cto.explosive.entity.Role;
+import com.cto.explosive.entity.vo.AdminUserVo;
 import com.cto.explosive.service.AdminUserService;
 import com.cto.explosive.service.MenuService;
 import com.cto.explosive.service.RoleService;
+import com.cto.explosive.utils.MenuTreeUtil;
 import com.cto.explosive.utils.PasswordUtils;
+import com.cto.explosive.utils.SessionUtil;
+import com.cto.explosive.utils.TreeNode;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -60,7 +64,7 @@ public class ShiroRealm extends AuthorizingRealm {
         String password = new String((char[]) authenticationToken.getCredentials());
 
         // 通过用户名到数据库查询用户信息
-        AdminUser user = adminUserService.getByUserName(userName);
+        AdminUserVo user = adminUserService.getByUserName(userName);
         if (user == null){
             throw new UnknownAccountException("用户不存在！");
         }
@@ -70,6 +74,10 @@ public class ShiroRealm extends AuthorizingRealm {
         if ("1".equals(user.getStatus())){
             throw new LockedAccountException("账号已被锁定,请联系管理员！");
         }
+        //获取用户对应的菜单
+        List<Menu> parentList = menuService.getParentMenuListByUserId(user.getId());
+        List<Menu> childList = menuService.getChildMenuListByUserId(user.getId());
+        user.setTreeNodeList(MenuTreeUtil.treeMenu(parentList,childList));
         //更新用户登录信息
         AdminUser tmpUser = new AdminUser();
         tmpUser.setLastLoginTime(new Date());

@@ -3,6 +3,7 @@ package com.cto.explosive.controller;
 import com.cto.explosive.controller.base.BaseController;
 import com.cto.explosive.entity.AdminUser;
 import com.cto.explosive.utils.Result;
+import com.cto.explosive.utils.SessionUtil;
 import com.cto.explosive.utils.vcode.Captcha;
 import com.cto.explosive.utils.vcode.GifCaptcha;
 import com.cto.explosive.utils.vcode.ValidateCodeProperties;
@@ -51,7 +52,7 @@ public class IndexController extends BaseController {
      */
     @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
     @ResponseBody
-    public Object login(String userName, String password, String code) {
+    public Object login(String userName, String password, String code,HttpServletRequest request) {
         if (!StringUtils.isNotBlank(code)) {
             return Result.error("验证码不能为空");
         }
@@ -66,6 +67,8 @@ public class IndexController extends BaseController {
             if (subject != null){
                 subject.logout();
                 super.login(token);
+                AdminUser adminUser = (AdminUser) subject.getPrincipal();
+                SessionUtil.setUser(request, adminUser);
                 return Result.ok();
             }else{
                 return Result.error("登录失败");
@@ -83,7 +86,7 @@ public class IndexController extends BaseController {
      * @return
      */
     @RequestMapping("/index")
-    @RequiresPermissions("article:list")
+//    @RequiresPermissions("article:list")
     public String index(Model model) {
         // 登录成后，即可通过 Subject 获取登录的用户信息
         AdminUser user = super.getCurrentUser();
