@@ -16,6 +16,9 @@
         <result property="addUserId" column="add_user_id" />
         <result property="addTime" column="add_time" />
     </resultMap>
+    <resultMap id="MenuVoResultMap" type="com.cto.explosive.entity.vo.MenuVo" extends="MenuResultMap">
+
+    </resultMap>
 
     <sql id="Menu_Column_List" >
         uuid,

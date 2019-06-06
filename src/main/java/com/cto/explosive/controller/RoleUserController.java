@@ -1,5 +1,5 @@
 /*
- * @(#)  RoleUserController.java    2019-06-05 10:16:11
+ * @(#)  RoleUserController.java    2019-06-06 12:08:40
  * Project  :Spring boot 代码生产系统
  * Company  :http://www.594cto.com
  */
@@ -9,6 +9,8 @@ import com.cto.explosive.entity.RoleUser;
 import com.cto.explosive.entity.vo.RoleUserVo;
 import com.cto.explosive.service.RoleUserService;
 import com.cto.explosive.utils.Result;
+import com.cto.explosive.utils.SessionUtil;
+import com.cto.explosive.controller.base.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +21,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
  * 文件名RoleUserController.java
  *
- * @author 1
- * @date 2019-06-05 10:16:11
+ * @author Zhang Yongwei
+ * @date 2019-06-06 12:08:40
  */
 @Controller
 @RequestMapping("roleUser")
-public class RoleUserController{
+public class RoleUserController extends BaseController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RoleUserController.class);
     @Autowired
     private RoleUserService roleUserService;
@@ -63,6 +66,29 @@ public class RoleUserController{
 
     }
 
+
+    /**
+     * 获取用户角色对应关系添加页
+     * @return
+     */
+    @RequestMapping(value = "/add")
+    public String add(Model model) {
+        return "roleUser/add";
+    }
+
+    /**
+     * 获取用户角色对应关系编辑页
+     * @return
+     */
+    @RequestMapping(value = "/edit")
+    public String edit(Long id,Model model) {
+        if(id != null){
+            RoleUser roleUser = roleUserService.selectEntityById(id);
+            model.addAttribute("roleUser", roleUser);
+        }
+        return "roleUser/edit";
+    }
+
     /**
      * 创建或者更新用户角色对应关系
      * @param roleUser 用户角色对应关系对象
@@ -87,17 +113,16 @@ public class RoleUserController{
         }
     }
 
-
     /**
      * 删除指定ID的用户角色对应关系信息
      * @param id
      * @return
      */
-    @RequestMapping(value = "/delete/{uuid}")
+    @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@PathVariable("uuid") String id, Model model) {
+    public Object delete(Long id, Model model) {
         try {
-            roleUserService.deleteByUUId(id);
+            roleUserService.deleteById(id);
             return Result.ok();
         } catch (Exception e) {
             e.printStackTrace();
