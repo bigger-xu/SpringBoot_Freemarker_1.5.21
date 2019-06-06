@@ -49,49 +49,49 @@
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font></label>
                                             <div class="controls">
-                                                <input type="text" name="uuid" value="${roleMenu.uuid}" placeholder="请输入" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="uuid" value="${roleMenu.uuid!}" placeholder="请输入" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>更新人ID</label>
                                             <div class="controls">
-                                                <input type="text" name="updateUserId" value="${roleMenu.updateUserId}" placeholder="请输入更新人ID" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="updateUserId" value="${roleMenu.updateUserId!}" placeholder="请输入更新人ID" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>角色ID</label>
                                             <div class="controls">
-                                                <input type="text" name="roleId" value="${roleMenu.roleId}" placeholder="请输入角色ID" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="roleId" value="${roleMenu.roleId!}" placeholder="请输入角色ID" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>更新时间</label>
                                             <div class="controls">
-                                                <input type="text" name="updateTime" value="${roleMenu.updateTime}" placeholder="请输入更新时间" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="updateTime" value="${(roleMenu.updateTime?string('yyyy-MM-dd hh:mm:ss'))!}" placeholder="请输入更新时间" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>菜单ID</label>
                                             <div class="controls">
-                                                <input type="text" name="menuId" value="${roleMenu.menuId}" placeholder="请输入菜单ID" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="menuId" value="${roleMenu.menuId!}" placeholder="请输入菜单ID" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>主键</label>
                                             <div class="controls">
-                                                <input type="text" name="id" value="${roleMenu.id}" placeholder="请输入主键" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="id" value="${roleMenu.id!}" placeholder="请输入主键" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>添加人ID</label>
                                             <div class="controls">
-                                                <input type="text" name="addUserId" value="${roleMenu.addUserId}" placeholder="请输入添加人ID" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="addUserId" value="${roleMenu.addUserId!}" placeholder="请输入添加人ID" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>添加时间</label>
                                             <div class="controls">
-                                                <input type="text" name="addTime" value="${roleMenu.addTime}" placeholder="请输入添加时间" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="addTime" value="${(roleMenu.addTime?string('yyyy-MM-dd hh:mm:ss'))!}" placeholder="请输入添加时间" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="form-actions">
