@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>角色表-添加</title>
+    <title>角色管理-添加</title>
     <#include "../common/include_css.html">
 </head>
 <body class="fixed-top">
@@ -26,11 +26,11 @@
                             <span class="divider">/</span>
                         </li>
                         <li>
-                            <span>角色表</span>
+                            <span>系统管理</span>
                             <span class="divider">/</span>
                         </li>
                         <li>
-                            <span>角色表</span>
+                            <span>角色管理</span>
                             <span class="divider">/</span>
                         </li>
                         <li class="active">
@@ -46,24 +46,6 @@
                                 <div class="widget-body">
                                     <form id="dataForm"  onSubmit="return false" class="form-horizontal">
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>删除状态(0否1是)</label>
-                                            <div class="controls">
-                                                <input type="text" name="deleteFlag" value="" placeholder="请输入删除状态(0否1是)" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>注释</label>
-                                            <div class="controls">
-                                                <input type="text" name="remark" value="" placeholder="请输入注释" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>状态1,0</label>
-                                            <div class="controls">
-                                                <input type="text" name="status" value="" placeholder="请输入状态1,0" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>角色编码</label>
                                             <div class="controls">
                                                 <input type="text" name="code" value="" placeholder="请输入角色编码" autocomplete="off" class="input-xxlarge required" />
@@ -76,39 +58,21 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>更新人ID</label>
+                                            <label class="control-label"><font style="color: #FF0000;">*</font>状态</label>
                                             <div class="controls">
-                                                <input type="text" name="updateUserId" value="" placeholder="请输入更新人ID" autocomplete="off" class="input-xxlarge required" />
+                                                <span class="checked">
+                                                    <input name="status" type="radio" value="0"/>
+                                                </span>禁用
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span class="checked">
+                                                    <input name="status" type="radio" value="1" checked="checked"/>
+                                                </span>启用
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>更新时间</label>
+                                            <label class="control-label">注释</label>
                                             <div class="controls">
-                                                <input type="text" name="updateTime" value="" placeholder="请输入更新时间" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>添加人ID</label>
-                                            <div class="controls">
-                                                <input type="text" name="addUserId" value="" placeholder="请输入添加人ID" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>添加时间</label>
-                                            <div class="controls">
-                                                <input type="text" name="addTime" value="" placeholder="请输入添加时间" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>主键</label>
-                                            <div class="controls">
-                                                <input type="text" name="id" value="" placeholder="请输入主键" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font></label>
-                                            <div class="controls">
-                                                <input type="text" name="uuid" value="" placeholder="请输入" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="remark" value="" placeholder="请输入注释" autocomplete="off" class="input-xxlarge" />
                                             </div>
                                         </div>
                                         <div class="form-actions">

@@ -22,15 +22,22 @@ function loadPage(page) {
         pageNum: page,
         callback: function (result) {
             layer.closeAll('loading');
-            var num = result.page.startIndex;
-            if (result != null && result.page != null && result.rows.length > 0) {
+            var num = result.startIndex;
+            if (result != null && result.rows != null && result.rows.length > 0) {
                 $("#itemsPanel tr").each(function () {
+                    //渲染自动排课
+                    var status = $(this).find("[key=status]").html();
+                    if (status == 0) {
+                        $(this).find("[key=status]").html("禁用");
+                    } else if (status == 1) {
+                        $(this).find("[key=status]").html("启用");
+                    }
                     //为序号赋值
                     $(this).find("[key=num]").append(num);
                     num ++ ;
                 });
             } else {
-                $("#itemsPanel").html("<tr><td style='text-align: center' colspan='8'>暂无数据</td>></tr>")
+                $("#itemsPanel").html("<tr><td style='text-align: center' colspan='6'>暂无数据</td>></tr>")
             }
         }//回调方法
     });

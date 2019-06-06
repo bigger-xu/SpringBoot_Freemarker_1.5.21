@@ -45,4 +45,10 @@ public interface MenuService extends BaseService<Menu> {
      * @return
      */
     List<Menu> getChildMenuListByUserId(Long id);
+
+    /**
+     * 获取所有的父级菜单
+     * @return
+     */
+    List<Menu> getParentMenuListAll();
 }

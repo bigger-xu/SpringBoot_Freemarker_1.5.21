@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>系统菜单表</title>
+    <title>菜单管理</title>
     <#include "../common/include_css.html">
 </head>
 <body class="fixed-top">
@@ -26,11 +26,11 @@
                             <span class="divider">/</span>
                         </li>
                         <li>
-                            <span>系统菜单表</span>
+                            <span>系统管理</span>
                             <span class="divider">/</span>
                         </li>
                         <li class="active">
-                            系统菜单表
+                            菜单管理
                         </li>
                     </ul>
                 </div>
@@ -52,19 +52,12 @@
                                         <thead>
                                         <tr>
                                             <th>序号</th>
-                                                    <th></th>
-                                                    <th>系统url</th>
-                                                    <th>更新人ID</th>
-                                                    <th>更新时间</th>
-                                                    <th>是否显示（0：是 1：否）</th>
-                                                    <th>排序</th>
-                                                    <th>权限标识符</th>
-                                                    <th>父id 关联sys_menu.id</th>
-                                                    <th>主键</th>
-                                                    <th>菜单名称</th>
-                                                    <th>是否删除,0=未删除，1=已删除</th>
-                                                    <th>添加人ID</th>
-                                                    <th>添加时间</th>
+                                            <th>菜单名称</th>
+                                            <th>系统url</th>
+                                            <th>是否显示</th>
+                                            <th>排序</th>
+                                            <th>权限标识符</th>
+                                            <th>添加时间</th>
                                             <th><i class=" icon-edit"></i> 操作</th>
                                         </tr>
                                         </thead>
@@ -97,19 +90,12 @@
 <table style="display: none;">
     <tr id="skillModel">
         <td key="num"></td>
-                <td key="uuid" ></td>
-                <td key="url" ></td>
-                <td key="updateUserId" ></td>
-                <td key="updateTime" formatDate="yyyy-MM-dd hh:mm:ss"></td>
-                <td key="state" ></td>
-                <td key="sort" ></td>
-                <td key="permission" ></td>
-                <td key="parentId" ></td>
-                <td key="id" ></td>
-                <td key="name" ></td>
-                <td key="deleteFlag" ></td>
-                <td key="addUserId" ></td>
-                <td key="addTime" formatDate="yyyy-MM-dd hh:mm:ss"></td>
+        <td key="name" ></td>
+        <td key="url" ></td>
+        <td key="state" ></td>
+        <td key="sort" ></td>
+        <td key="permission" ></td>
+        <td key="addTime" formatDate="yyyy-MM-dd hh:mm:ss"></td>
         <td style="width: 20%">
             <input type="hidden" key="id">
             <a class="btn btn-primary del  edit" title="修改">修改</a>

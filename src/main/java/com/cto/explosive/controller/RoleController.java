@@ -99,6 +99,7 @@ public class RoleController extends BaseController {
     public Object saveOrUpdate(Role role) {
         try {
             if (role.getId() == null) {
+                role.setDeleteFlag("0");
                 role.setAddTime(new Date());
                 roleService.insert(role);
             } else {

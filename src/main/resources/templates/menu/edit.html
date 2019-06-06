@@ -47,81 +47,52 @@
                                     <form id="dataForm"  onSubmit="return false" class="form-horizontal">
                                         <input type="hidden" name="id" value="${menu.id}">
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font></label>
+                                            <label class="control-label"><font style="color: #FF0000;">*</font>菜单名称</label>
                                             <div class="controls">
-                                                <input type="text" name="uuid" value="${menu.uuid!}" placeholder="请输入" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="name" value="${menu.name}" placeholder="请输入菜单名称" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>系统url</label>
+                                            <label class="control-label">系统url</label>
                                             <div class="controls">
-                                                <input type="text" name="url" value="${menu.url!}" placeholder="请输入系统url" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="url" value="${menu.url!}" placeholder="请输入系统url" autocomplete="off" class="input-xxlarge" />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>更新人ID</label>
+                                            <label class="control-label">父级菜单</label>
                                             <div class="controls">
-                                                <input type="text" name="updateUserId" value="${menu.updateUserId!}" placeholder="请输入更新人ID" autocomplete="off" class="input-xxlarge required" />
+                                                <select name="parentId" id="parentId">
+                                                    <option value="0">请选择</option>
+                                                    <#if parentMenu?? && (parentMenu?size > 0) >
+                                                        <#list parentMenu as m>
+                                                            <option value="${m.id}" <#if m.id = menu.parentId>selected="selected"</#if>>${m.name}</option>
+                                                        </#list>
+                                                    </#if>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>更新时间</label>
+                                            <label class="control-label"><font style="color: #FF0000;">*</font>是否显示</label>
                                             <div class="controls">
-                                                <input type="text" name="updateTime" value="${(menu.updateTime?string('yyyy-MM-dd hh:mm:ss'))!}" placeholder="请输入更新时间" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>是否显示（0：是 1：否）</label>
-                                            <div class="controls">
-                                                <input type="text" name="state" value="${menu.state!}" placeholder="请输入是否显示（0：是 1：否）" autocomplete="off" class="input-xxlarge required" />
+                                                <span class="checked">
+                                                    <input name="state" type="radio" value="0" <#if menu.state == 0 >checked="checked"</#if>/>
+                                                </span>否
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span class="checked">
+                                                    <input name="state" type="radio" value="1" <#if menu.state == 1 >checked="checked"</#if>/>
+                                                </span>是
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>排序</label>
                                             <div class="controls">
-                                                <input type="text" name="sort" value="${menu.sort!}" placeholder="请输入排序" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="sort" value="${menu.sort}" placeholder="请输入排序" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>权限标识符</label>
+                                            <label class="control-label">权限标识符</label>
                                             <div class="controls">
-                                                <input type="text" name="permission" value="${menu.permission!}" placeholder="请输入权限标识符" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>父id 关联sys_menu.id</label>
-                                            <div class="controls">
-                                                <input type="text" name="parentId" value="${menu.parentId!}" placeholder="请输入父id 关联sys_menu.id" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>主键</label>
-                                            <div class="controls">
-                                                <input type="text" name="id" value="${menu.id!}" placeholder="请输入主键" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>菜单名称</label>
-                                            <div class="controls">
-                                                <input type="text" name="name" value="${menu.name!}" placeholder="请输入菜单名称" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>是否删除,0=未删除，1=已删除</label>
-                                            <div class="controls">
-                                                <input type="text" name="deleteFlag" value="${menu.deleteFlag!}" placeholder="请输入是否删除,0=未删除，1=已删除" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>添加人ID</label>
-                                            <div class="controls">
-                                                <input type="text" name="addUserId" value="${menu.addUserId!}" placeholder="请输入添加人ID" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>添加时间</label>
-                                            <div class="controls">
-                                                <input type="text" name="addTime" value="${(menu.addTime?string('yyyy-MM-dd hh:mm:ss'))!}" placeholder="请输入添加时间" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="permission" value="${menu.permission!}" placeholder="请输入权限标识符" autocomplete="off" class="input-xxlarge" />
                                             </div>
                                         </div>
                                         <div class="form-actions">

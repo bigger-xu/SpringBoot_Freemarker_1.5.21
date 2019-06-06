@@ -19,4 +19,8 @@
         LEFT JOIN role_user ru ON ru.role_id = rm.role_id
         WHERE ru.user_id = #{id} and m.parent_id != 0
     </select>
+    <select id="getParentMenuListAll" resultMap="MenuResultMap">
+        SELECT m.* FROM menu m where m.parent_id = 0 and delete_flag = 0
+    </select>
+
 </mapper>

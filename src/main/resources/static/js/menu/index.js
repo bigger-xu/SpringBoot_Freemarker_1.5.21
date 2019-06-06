@@ -22,9 +22,16 @@ function loadPage(page) {
         pageNum: page,
         callback: function (result) {
             layer.closeAll('loading');
-            var num = result.page.startIndex;
-            if (result != null && result.page != null && result.rows.length > 0) {
+            var num = result.startIndex;
+            if (result != null && result.rows != null && result.rows.length > 0) {
                 $("#itemsPanel tr").each(function () {
+                    //渲染自动排课
+                    var state = $(this).find("[key=state]").html();
+                    if (state == 0) {
+                        $(this).find("[key=state]").html("否");
+                    } else if (state == 1) {
+                        $(this).find("[key=state]").html("是");
+                    }
                     //为序号赋值
                     $(this).find("[key=num]").append(num);
                     num ++ ;

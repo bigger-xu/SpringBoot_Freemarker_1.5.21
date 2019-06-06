@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 文件名MenuController.java
@@ -73,6 +74,8 @@ public class MenuController extends BaseController {
      */
     @RequestMapping(value = "/add")
     public String add(Model model) {
+        List<Menu> parentMenu = menuService.getParentMenuListAll();
+        model.addAttribute("parentMenu",parentMenu);
         return "menu/add";
     }
 
@@ -82,6 +85,8 @@ public class MenuController extends BaseController {
      */
     @RequestMapping(value = "/edit")
     public String edit(Long id,Model model) {
+        List<Menu> parentMenu = menuService.getParentMenuListAll();
+        model.addAttribute("parentMenu",parentMenu);
         if(id != null){
             Menu menu = menuService.selectEntityById(id);
             model.addAttribute("menu", menu);
@@ -99,6 +104,7 @@ public class MenuController extends BaseController {
     public Object saveOrUpdate(Menu menu) {
         try {
             if (menu.getId() == null) {
+                menu.setDeleteFlag(0);
                 menu.setAddTime(new Date());
                 menuService.insert(menu);
             } else {
