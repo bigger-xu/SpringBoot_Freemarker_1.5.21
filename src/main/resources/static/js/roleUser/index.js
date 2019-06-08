@@ -55,7 +55,7 @@ $(document).on("click", ".delete", function () {
             url: "/roleUser/delete",
             data: {"id": id},
             success: function (result) {
-                if (result.flag == 1) {
+                if (result.code == 0) {
                     $("#closeBtnLab").click();
                     layer.msg("操作成功");
                     loadPage();

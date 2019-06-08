@@ -38,4 +38,9 @@ public class RoleMenuServiceImpl extends BaseServiceImpl<RoleMenu> implements Ro
         page.setRows(result == null ? new ArrayList<>() : result);
         return page;
     }
+
+    @Override
+    public void deleteByRoleId(Long id) {
+        roleMenuMapper.deleteByRoleId(id);
+    }
 }

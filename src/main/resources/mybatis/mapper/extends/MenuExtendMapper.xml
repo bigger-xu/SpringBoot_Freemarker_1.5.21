@@ -23,4 +23,8 @@
         SELECT m.* FROM menu m where m.parent_id = 0 and delete_flag = 0
     </select>
 
+    <select id="getChildMenuListAll" resultMap="MenuResultMap">
+        SELECT m.* FROM menu m where m.parent_id != 0 and delete_flag = 0
+    </select>
+
 </mapper>

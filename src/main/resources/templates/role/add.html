@@ -45,6 +45,7 @@
                             <div class="widget blue">
                                 <div class="widget-body">
                                     <form id="dataForm"  onSubmit="return false" class="form-horizontal">
+                                        <input type="hidden" name="id" value="">
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>角色编码</label>
                                             <div class="controls">
@@ -67,6 +68,12 @@
                                                 <span class="checked">
                                                     <input name="status" type="radio" value="1" checked="checked"/>
                                                 </span>启用
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">菜单权限</label>
+                                            <div class="controls">
+                                                <ul id="menu-tree" class="ztree"></ul>
                                             </div>
                                         </div>
                                         <div class="control-group">

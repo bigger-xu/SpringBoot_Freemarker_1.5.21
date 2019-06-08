@@ -43,4 +43,10 @@ public interface MenuMapper extends BaseDao<Menu> {
      * @return
      */
     List<Menu> getParentMenuListAll();
+
+    /**
+     * 获取所有的子级菜单
+     * @return
+     */
+    List<Menu> getChildMenuListAll();
 }

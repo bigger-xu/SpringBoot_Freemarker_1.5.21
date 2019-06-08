@@ -18,4 +18,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleMenuMapper extends BaseDao<RoleMenu> {
 
+    /**
+     * 根据权限ID删除
+     * @param id
+     */
+    void deleteByRoleId(Long id);
 }

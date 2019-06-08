@@ -6,11 +6,14 @@
 package com.cto.explosive.controller;
 
 import com.cto.explosive.entity.Role;
+import com.cto.explosive.entity.RoleMenu;
 import com.cto.explosive.entity.vo.RoleVo;
+import com.cto.explosive.service.RoleMenuService;
 import com.cto.explosive.service.RoleService;
 import com.cto.explosive.utils.Result;
 import com.cto.explosive.utils.SessionUtil;
 import com.cto.explosive.controller.base.BaseController;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +39,8 @@ public class RoleController extends BaseController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RoleController.class);
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private RoleMenuService roleMenuService;
 
     /**
      * 获取角色表列表页
@@ -96,15 +101,39 @@ public class RoleController extends BaseController {
      */
     @RequestMapping(value = "saveOrUpdate", method = RequestMethod.POST)
     @ResponseBody
-    public Object saveOrUpdate(Role role) {
+    public Object saveOrUpdate(RoleVo role) {
         try {
+            Date date = new Date();
             if (role.getId() == null) {
                 role.setDeleteFlag("0");
-                role.setAddTime(new Date());
+                role.setAddTime(date);
                 roleService.insert(role);
+                if(StringUtils.isNotEmpty(role.getRoleIds())){
+                    String[] roleIdList = role.getRoleIds().split(",");
+                    RoleMenu roleMenu;
+                    for(String s : roleIdList){
+                        roleMenu = new RoleMenu();
+                        roleMenu.setRoleId(role.getId());
+                        roleMenu.setAddTime(date);
+                        roleMenu.setMenuId(Long.valueOf(s));
+                        roleMenuService.insert(roleMenu);
+                    }
+                }
             } else {
-                role.setUpdateTime(new Date());
+                role.setUpdateTime(date);
                 roleService.updateBySelective(role);
+                if(StringUtils.isNotEmpty(role.getRoleIds())){
+                    roleMenuService.deleteByRoleId(role.getId());
+                    String[] roleIdList = role.getRoleIds().split(",");
+                    RoleMenu roleMenu;
+                    for(String s : roleIdList){
+                        roleMenu = new RoleMenu();
+                        roleMenu.setRoleId(role.getId());
+                        roleMenu.setAddTime(date);
+                        roleMenu.setMenuId(Long.valueOf(s));
+                        roleMenuService.insert(roleMenu);
+                    }
+                }
             }
             return Result.ok();
         } catch (Exception e) {

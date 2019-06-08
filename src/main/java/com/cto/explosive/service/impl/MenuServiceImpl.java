@@ -58,4 +58,9 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
     public List<Menu> getParentMenuListAll() {
         return menuMapper.getParentMenuListAll();
     }
+
+    @Override
+    public List<Menu> getChildMenuListAll() {
+        return menuMapper.getChildMenuListAll();
+    }
 }

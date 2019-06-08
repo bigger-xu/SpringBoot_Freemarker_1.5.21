@@ -22,4 +22,10 @@ public interface RoleMenuService extends BaseService<RoleMenu> {
      * @return
      */
     Page<RoleMenu> selectPage(RoleMenu roleMenu);
+
+    /**
+     * 根据权限ID删除
+     * @param id
+     */
+    void deleteByRoleId(Long id);
 }

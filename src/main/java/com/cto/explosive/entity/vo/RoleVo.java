@@ -23,4 +23,13 @@ public class RoleVo extends Role {
     public RoleVo() {
 
     }
+    private String roleIds;
+
+    public String getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(String roleIds) {
+        this.roleIds = roleIds;
+    }
 }

@@ -6,11 +6,18 @@
 package com.cto.explosive.controller;
 
 import com.cto.explosive.entity.Menu;
+import com.cto.explosive.entity.Role;
+import com.cto.explosive.entity.RoleMenu;
 import com.cto.explosive.entity.vo.MenuVo;
 import com.cto.explosive.service.MenuService;
+import com.cto.explosive.service.RoleMenuService;
+import com.cto.explosive.service.RoleService;
+import com.cto.explosive.utils.MenuTreeUtil;
 import com.cto.explosive.utils.Result;
 import com.cto.explosive.utils.SessionUtil;
 import com.cto.explosive.controller.base.BaseController;
+import com.cto.explosive.utils.TreeNode;
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +44,8 @@ public class MenuController extends BaseController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuController.class);
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private RoleMenuService roleMenuService;
 
     /**
      * 获取系统菜单表列表页
@@ -135,5 +144,48 @@ public class MenuController extends BaseController {
             LOGGER.error("请求错误:{}",e);
             return Result.error();
         }
+    }
+
+    @RequestMapping(value = "/getMenuTree")
+    @ResponseBody
+    public Object getMenuTree(Long roleId){
+        List<TreeNode> menuTree = treeMenu();
+        if (roleId != null) {
+            //根据角色id查询关联菜单id集合
+            RoleMenu roleMenu = new RoleMenu();
+            roleMenu.setRoleId(roleId);
+            List<RoleMenu> relList = roleMenuService.selectListBySearch(roleMenu);
+            setMenuChecked(menuTree, relList);
+        }
+        return menuTree;
+    }
+
+    /**
+     * 设置菜单选择
+     * @param menuTree
+     * @param relList
+     */
+    private void setMenuChecked(List<TreeNode> menuTree, List<RoleMenu> relList){
+        for (TreeNode node : menuTree) {
+            for (RoleMenu rel : relList) {
+                if (Integer.valueOf(node.getAttributes().get("id").toString()) == rel.getMenuId().intValue()) {
+                    node.setChecked(true);
+                }
+            }
+            if (CollectionUtils.isNotEmpty(node.getChildren())) {
+                setMenuChecked(node.getChildren(), relList);
+            }
+        }
+    }
+
+    /**
+     * 构建树形菜单
+     * @return
+     */
+    public List<TreeNode> treeMenu() {
+        List<Menu> rootMenus = menuService.getParentMenuListAll();
+        List<Menu> childMenus = menuService.getChildMenuListAll();
+        MenuTreeUtil util = new MenuTreeUtil(rootMenus, childMenus);
+        return util.getTreeNode();
     }
 }
