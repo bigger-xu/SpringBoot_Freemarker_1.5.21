@@ -30,4 +30,16 @@ public interface AdminUserService extends BaseService<AdminUser> {
      * @return
      */
     AdminUserVo getByUserName(String userName);
+
+    /**
+     * 创建用户
+     * @param adminUser
+     */
+    void create(AdminUser adminUser);
+
+    /**
+     * 修改用户
+     * @param adminUser
+     */
+    void updateDefault(AdminUser adminUser);
 }

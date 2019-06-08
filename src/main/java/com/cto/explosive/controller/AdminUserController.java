@@ -100,10 +100,10 @@ public class AdminUserController extends BaseController {
         try {
             if (adminUser.getId() == null) {
                 adminUser.setAddTime(new Date());
-                adminUserService.insert(adminUser);
+                adminUserService.create(adminUser);
             } else {
                 adminUser.setUpdateTime(new Date());
-                adminUserService.updateBySelective(adminUser);
+                adminUserService.updateDefault(adminUser);
             }
             return Result.ok();
         } catch (Exception e) {

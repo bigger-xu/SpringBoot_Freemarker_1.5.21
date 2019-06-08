@@ -22,9 +22,25 @@ function loadPage(page) {
         pageNum: page,
         callback: function (result) {
             layer.closeAll('loading');
-            var num = result.page.startIndex;
-            if (result != null && result.page != null && result.rows.length > 0) {
+            var num = result.startIndex;
+            if (result != null && result.rows != null && result.rows.length > 0) {
                 $("#itemsPanel tr").each(function () {
+                    //渲染自动排课
+                    var status = $(this).find("[key=status]").html();
+                    if (status == 0) {
+                        $(this).find("[key=status]").html("锁定");
+                    } else if (status == 1) {
+                        $(this).find("[key=status]").html("正常");
+                    }
+
+                    var userType = $(this).find("[key=userType]").html();
+                    if (userType == 1) {
+                        $(this).find("[key=userType]").html("个人");
+                    } else if (userType == 2) {
+                        $(this).find("[key=userType]").html("餐饮机构");
+                    } else if (userType == 3) {
+                        $(this).find("[key=userType]").html("经销商");
+                    }
                     //为序号赋值
                     $(this).find("[key=num]").append(num);
                     num ++ ;

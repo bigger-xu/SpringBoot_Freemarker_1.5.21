@@ -11,6 +11,8 @@ import com.cto.explosive.entity.vo.AdminUserVo;
 import com.cto.explosive.service.AdminUserService;
 import com.cto.explosive.service.base.BaseServiceImpl;
 import com.cto.explosive.utils.Page;
+import com.cto.explosive.utils.PasswordUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,4 +46,31 @@ public class AdminUserServiceImpl extends BaseServiceImpl<AdminUser> implements 
     public AdminUserVo getByUserName(String userName) {
         return adminUserMapper.getByUserName(userName);
     }
+
+    @Override
+    public void create(AdminUser adminUser) {
+        adminUser = this.setPassword(adminUser);
+        adminUserMapper.insert(adminUser);
+    }
+
+    @Override
+    public void updateDefault(AdminUser adminUser) {
+        if(StringUtils.isNotEmpty(adminUser.getPassword())){
+            adminUser = this.setPassword(adminUser);
+        }
+        adminUserMapper.updateBySelective(adminUser);
+    }
+
+    public AdminUser setPassword(AdminUser adminUser) {
+        String salt = PasswordUtils.generateSalt();
+        adminUser.setSalt(salt);
+        adminUser.setPassword(encrypt(adminUser));
+        return adminUser;
+    }
+
+    public String encrypt(AdminUser adminUser) {
+        return PasswordUtils.entryptPassword(adminUser.getPassword(),adminUser.getSalt());
+    }
+
 }
+

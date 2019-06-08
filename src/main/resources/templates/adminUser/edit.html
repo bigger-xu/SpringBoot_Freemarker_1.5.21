@@ -46,148 +46,51 @@
                                 <div class="widget-body">
                                     <form id="dataForm"  onSubmit="return false" class="form-horizontal">
                                         <input type="hidden" name="id" value="${adminUser.id}">
+
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>删除状态</label>
+                                            <label class="control-label"><font style="color: #FF0000;">*</font>用户名</label>
                                             <div class="controls">
-                                                <input type="text" name="deleteFlag" value="${adminUser.deleteFlag!}" placeholder="请输入删除状态" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="userName" value="${adminUser.userName}" placeholder="请输入用户名" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font></label>
+                                            <label class="control-label"><font style="color: #FF0000;">*</font>密码</label>
                                             <div class="controls">
-                                                <input type="text" name="address" value="${adminUser.address!}" placeholder="请输入" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font></label>
-                                            <div class="controls">
-                                                <input type="text" name="mobile" value="${adminUser.mobile!}" placeholder="请输入" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font></label>
-                                            <div class="controls">
-                                                <input type="text" name="email" value="${adminUser.email!}" placeholder="请输入" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>性别</label>
-                                            <div class="controls">
-                                                <input type="text" name="sex" value="${adminUser.sex!}" placeholder="请输入性别" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>县</label>
-                                            <div class="controls">
-                                                <input type="text" name="district" value="${adminUser.district!}" placeholder="请输入县" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>市</label>
-                                            <div class="controls">
-                                                <input type="text" name="city" value="${adminUser.city!}" placeholder="请输入市" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>省</label>
-                                            <div class="controls">
-                                                <input type="text" name="province" value="${adminUser.province!}" placeholder="请输入省" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>登录次数</label>
-                                            <div class="controls">
-                                                <input type="text" name="loginCount" value="${adminUser.loginCount!}" placeholder="请输入登录次数" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>最后一次登录IP</label>
-                                            <div class="controls">
-                                                <input type="text" name="lastLoginIp" value="${adminUser.lastLoginIp!}" placeholder="请输入最后一次登录IP" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>最后一次登录时间</label>
-                                            <div class="controls">
-                                                <input type="text" name="lastLoginTime" value="${(adminUser.lastLoginTime?string('yyyy-MM-dd hh:mm:ss'))!}" placeholder="请输入最后一次登录时间" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>用户头像</label>
-                                            <div class="controls">
-                                                <input type="text" name="avator" value="${adminUser.avator!}" placeholder="请输入用户头像" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="password" value="" placeholder="请输入密码" autocomplete="off" class="input-xxlarge" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>昵称</label>
                                             <div class="controls">
-                                                <input type="text" name="nickName" value="${adminUser.nickName!}" placeholder="请输入昵称" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="nickName" value="${adminUser.nickName}" placeholder="请输入昵称" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>盐值</label>
+                                            <label class="control-label"><font style="color: #FF0000;">*</font>用户状态</label>
                                             <div class="controls">
-                                                <input type="text" name="salt" value="${adminUser.salt!}" placeholder="请输入盐值" autocomplete="off" class="input-xxlarge required" />
+                                                <span class="checked">
+                                                    <input name="status" type="radio" value="0" <#if adminUser.status == '0' >checked="checked"</#if>/>
+                                                </span>锁定
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span class="checked">
+                                                    <input name="status" type="radio" value="1" <#if adminUser.status == '1' >checked="checked"</#if>/>
+                                                </span>正常
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>密码校验规则md5(md5(password)+salt)</label>
+                                            <label class="control-label"><font style="color: #FF0000;">*</font>用户类型</label>
                                             <div class="controls">
-                                                <input type="text" name="password" value="${adminUser.password!}" placeholder="请输入密码校验规则md5(md5(password)+salt)" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>用户名</label>
-                                            <div class="controls">
-                                                <input type="text" name="userName" value="${adminUser.userName!}" placeholder="请输入用户名" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>用户状态(0锁定1正常)</label>
-                                            <div class="controls">
-                                                <input type="text" name="status" value="${adminUser.status!}" placeholder="请输入用户状态(0锁定1正常)" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>用户类型(1个人；2餐饮机构 ；3分销商)</label>
-                                            <div class="controls">
-                                                <input type="text" name="userType" value="${adminUser.userType!}" placeholder="请输入用户类型(1个人；2餐饮机构 ；3分销商)" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>更新人ID</label>
-                                            <div class="controls">
-                                                <input type="text" name="updateUserId" value="${adminUser.updateUserId!}" placeholder="请输入更新人ID" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>更新时间</label>
-                                            <div class="controls">
-                                                <input type="text" name="updateTime" value="${(adminUser.updateTime?string('yyyy-MM-dd hh:mm:ss'))!}" placeholder="请输入更新时间" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>添加人ID</label>
-                                            <div class="controls">
-                                                <input type="text" name="addUserId" value="${adminUser.addUserId!}" placeholder="请输入添加人ID" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>添加时间</label>
-                                            <div class="controls">
-                                                <input type="text" name="addTime" value="${(adminUser.addTime?string('yyyy-MM-dd hh:mm:ss'))!}" placeholder="请输入添加时间" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font></label>
-                                            <div class="controls">
-                                                <input type="text" name="uuid" value="${adminUser.uuid!}" placeholder="请输入" autocomplete="off" class="input-xxlarge required" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><font style="color: #FF0000;">*</font>ID编号</label>
-                                            <div class="controls">
-                                                <input type="text" name="id" value="${adminUser.id!}" placeholder="请输入ID编号" autocomplete="off" class="input-xxlarge required" />
+                                                <span class="checked">
+                                                    <input name="userType" type="radio" value="1" <#if adminUser.userType == '1' >checked="checked"</#if>/>
+                                                </span>个人
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span class="checked">
+                                                    <input name="userType" type="radio" value="2" <#if adminUser.userType == '2' >checked="checked"</#if>/>
+                                                </span>餐饮机构
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span class="checked">
+                                                    <input name="userType" type="radio" value="3" <#if adminUser.userType == '3' >checked="checked"</#if>/>
+                                                </span>分销商
                                             </div>
                                         </div>
                                         <div class="form-actions">
