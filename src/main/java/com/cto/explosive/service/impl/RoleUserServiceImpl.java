@@ -38,4 +38,9 @@ public class RoleUserServiceImpl extends BaseServiceImpl<RoleUser> implements Ro
         page.setRows(result == null ? new ArrayList<>() : result);
         return page;
     }
+
+    @Override
+    public void deleteByUserId(Long id) {
+        roleUserMapper.deleteByUserId(id);
+    }
 }

@@ -14,6 +14,7 @@ import com.cto.explosive.utils.Result;
 import com.cto.explosive.utils.SessionUtil;
 import com.cto.explosive.controller.base.BaseController;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,7 @@ public class RoleController extends BaseController {
      * @return
      */
     @RequestMapping
+    @RequiresPermissions("role")
     public String index(Model model) {
         return "role/index";
     }

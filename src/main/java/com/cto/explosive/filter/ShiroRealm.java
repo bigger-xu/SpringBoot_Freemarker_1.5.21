@@ -71,7 +71,7 @@ public class ShiroRealm extends AuthorizingRealm {
         if (!PasswordUtils.validatePassword(password,user.getSalt(),user.getPassword())){
             throw new IncorrectCredentialsException("用户名或密码错误！");
         }
-        if ("1".equals(user.getStatus())){
+        if ("0".equals(user.getStatus())){
             throw new LockedAccountException("账号已被锁定,请联系管理员！");
         }
         //获取用户对应的菜单

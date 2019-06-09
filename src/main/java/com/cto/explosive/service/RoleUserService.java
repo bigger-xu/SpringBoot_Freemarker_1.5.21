@@ -22,4 +22,10 @@ public interface RoleUserService extends BaseService<RoleUser> {
      * @return
      */
     Page<RoleUser> selectPage(RoleUser roleUser);
+
+    /**
+     * 根据用户删除
+     * @param id
+     */
+    void deleteByUserId(Long id);
 }

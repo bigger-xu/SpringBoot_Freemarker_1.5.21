@@ -80,17 +80,14 @@
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>用户类型</label>
                                             <div class="controls">
-                                                <span class="checked">
-                                                    <input name="userType" type="radio" value="1" <#if adminUser.userType == '1' >checked="checked"</#if>/>
-                                                </span>个人
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <span class="checked">
-                                                    <input name="userType" type="radio" value="2" <#if adminUser.userType == '2' >checked="checked"</#if>/>
-                                                </span>餐饮机构
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <span class="checked">
-                                                    <input name="userType" type="radio" value="3" <#if adminUser.userType == '3' >checked="checked"</#if>/>
-                                                </span>分销商
+                                                <#if roleList?? && (roleList?size > 0) >
+                                                <#list roleList as role>
+                                                        <span class="checked">
+                                                            <input name="userType" type="radio" value="${role.code}" <#if adminUser.userType == role.code >checked="checked"</#if>/>
+                                                        </span>${role.name}
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    </#list>
+                                                </#if>
                                             </div>
                                         </div>
                                         <div class="form-actions">

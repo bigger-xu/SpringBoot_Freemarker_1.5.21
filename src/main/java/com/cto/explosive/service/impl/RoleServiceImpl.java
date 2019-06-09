@@ -43,4 +43,9 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
     public List<Role> selectListByUserId(Long id) {
         return roleMapper.selectListByUserId(id);
     }
+
+    @Override
+    public Role selectEntityByCode(String userType) {
+        return roleMapper.selectEntityByCode(userType);
+    }
 }

@@ -18,6 +18,7 @@ import com.cto.explosive.utils.SessionUtil;
 import com.cto.explosive.controller.base.BaseController;
 import com.cto.explosive.utils.TreeNode;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,7 @@ public class MenuController extends BaseController {
      * @return
      */
     @RequestMapping
+    @RequiresPermissions("menu")
     public String index(Model model) {
         return "menu/index";
     }

@@ -6,4 +6,10 @@
         LEFT JOIN role_user ru ON ru.role_id = r.id
         WHERE ru.user_id = #{id}
     </select>
+
+    <select id="selectEntityByCode" parameterType="java.lang.String" resultMap="RoleResultMap">
+        SELECT r.* FROM role r
+        WHERE r.code = #{userType}
+        limit 1
+    </select>
 </mapper>

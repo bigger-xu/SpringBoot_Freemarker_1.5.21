@@ -7,16 +7,22 @@ package com.cto.explosive.service.impl;
 
 import com.cto.explosive.dao.AdminUserMapper;
 import com.cto.explosive.entity.AdminUser;
+import com.cto.explosive.entity.Role;
+import com.cto.explosive.entity.RoleUser;
 import com.cto.explosive.entity.vo.AdminUserVo;
 import com.cto.explosive.service.AdminUserService;
+import com.cto.explosive.service.RoleService;
+import com.cto.explosive.service.RoleUserService;
 import com.cto.explosive.service.base.BaseServiceImpl;
 import com.cto.explosive.utils.Page;
 import com.cto.explosive.utils.PasswordUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,6 +39,10 @@ public class AdminUserServiceImpl extends BaseServiceImpl<AdminUser> implements 
     public AdminUserMapper getNameSpace() {
         return adminUserMapper;
     }
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private RoleUserService roleUserService;
 
     @Override
     public Page<AdminUser> selectPage(AdminUser adminUser) {
@@ -48,17 +58,35 @@ public class AdminUserServiceImpl extends BaseServiceImpl<AdminUser> implements 
     }
 
     @Override
+    @Transactional( rollbackFor = Exception.class)
     public void create(AdminUser adminUser) {
+        adminUser.setDeleteFlag("0");
+        adminUser.setLoginCount(0);
         adminUser = this.setPassword(adminUser);
-        adminUserMapper.insert(adminUser);
+        super.insert(adminUser);
+        Role role = roleService.selectEntityByCode(adminUser.getUserType());
+        RoleUser roleUser = new RoleUser();
+        roleUser.setAddTime(new Date());
+        roleUser.setRoleId(role.getId());
+        roleUser.setUserId(adminUser.getId());
+        roleUserService.insert(roleUser);
     }
 
     @Override
+    @Transactional( rollbackFor = Exception.class)
     public void updateDefault(AdminUser adminUser) {
         if(StringUtils.isNotEmpty(adminUser.getPassword())){
             adminUser = this.setPassword(adminUser);
         }
-        adminUserMapper.updateBySelective(adminUser);
+        super.updateBySelective(adminUser);
+
+        Role role = roleService.selectEntityByCode(adminUser.getUserType());
+        roleUserService.deleteByUserId(adminUser.getId());
+        RoleUser roleUser = new RoleUser();
+        roleUser.setAddTime(new Date());
+        roleUser.setRoleId(role.getId());
+        roleUser.setUserId(adminUser.getId());
+        roleUserService.insert(roleUser);
     }
 
     public AdminUser setPassword(AdminUser adminUser) {

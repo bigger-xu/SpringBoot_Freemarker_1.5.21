@@ -18,4 +18,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleUserMapper extends BaseDao<RoleUser> {
 
+    /**
+     * 根据用户ID删除
+     * @param id
+     */
+    void deleteByUserId(Long id);
 }

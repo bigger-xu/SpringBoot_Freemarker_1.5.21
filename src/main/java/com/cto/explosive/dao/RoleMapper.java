@@ -26,4 +26,11 @@ public interface RoleMapper extends BaseDao<Role> {
      * @return
      */
     List<Role> selectListByUserId(Long id);
+
+    /**
+     * 根据code获取权限
+     * @param userType
+     * @return
+     */
+    Role selectEntityByCode(String userType);
 }

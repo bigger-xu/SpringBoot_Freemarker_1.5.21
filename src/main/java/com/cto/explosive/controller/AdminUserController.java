@@ -6,11 +6,14 @@
 package com.cto.explosive.controller;
 
 import com.cto.explosive.entity.AdminUser;
+import com.cto.explosive.entity.Role;
 import com.cto.explosive.entity.vo.AdminUserVo;
 import com.cto.explosive.service.AdminUserService;
+import com.cto.explosive.service.RoleService;
 import com.cto.explosive.utils.Result;
 import com.cto.explosive.utils.SessionUtil;
 import com.cto.explosive.controller.base.BaseController;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 文件名AdminUserController.java
@@ -36,12 +40,15 @@ public class AdminUserController extends BaseController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AdminUserController.class);
     @Autowired
     private AdminUserService adminUserService;
+    @Autowired
+    private RoleService roleService;
 
     /**
      * 获取系统用户表列表页
      * @return
      */
     @RequestMapping
+    @RequiresPermissions("adminUser")
     public String index(Model model) {
         return "adminUser/index";
     }
@@ -73,6 +80,10 @@ public class AdminUserController extends BaseController {
      */
     @RequestMapping(value = "/add")
     public String add(Model model) {
+        Role role = new Role();
+        role.setStatus("1");
+        List<Role> roleList = roleService.selectListBySearch(role);
+        model.addAttribute("roleList",roleList);
         return "adminUser/add";
     }
 
@@ -86,6 +97,10 @@ public class AdminUserController extends BaseController {
             AdminUser adminUser = adminUserService.selectEntityById(id);
             model.addAttribute("adminUser", adminUser);
         }
+        Role role = new Role();
+        role.setStatus("1");
+        List<Role> roleList = roleService.selectListBySearch(role);
+        model.addAttribute("roleList",roleList);
         return "adminUser/edit";
     }
 
